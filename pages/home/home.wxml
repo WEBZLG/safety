@@ -1,0 +1,18 @@
+<!--pages/home/home.wxml-->
+<view>
+    <view class='banner'>
+        <image src='../../images/searchbg.png'></image>
+        <view class='logo'>
+            <image src='{{logo}}'></image>
+        </view>
+    </view>
+    <view class='container'>
+        <view>
+            <input class='ipt' placeholder='请输入关键词' bindinput='iptVal'></input>
+        </view>
+        <view>
+            <button class='search' catchtap='search'>搜索</button>
+        </view>
+        <view class='text'>大庆石化公司团委制作</view>
+    </view>
+</view>

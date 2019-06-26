@@ -1,0 +1,19 @@
+<!--pages/searchlist/searchlist.wxml-->
+<import src="../../utils/wxParse/wxParse.wxml" />
+<view class='container'>
+    <view class='search-box'>
+        <input class='ipt' placeholder='请输入关键字' bindinput='iptVal'></input>
+        <button class='search' catchtap='search'>搜索</button>
+    </view>
+    <view class='data-list' wx:if="{{dataList.length !==0}}">
+        <block wx:for="{{dataList}}" wx:key="{{index}}">
+        <view class='list-item'  data-url="{{item[0].word_url}}" catchtap='viewFile'>
+            <view class='content'>
+                <template is="wxParse" data="{{wxParseData:item}}" />
+            </view>
+            <view class='title'>{{item[0].title}}</view>
+        </view>
+        </block>
+    </view>
+    <view class='list-none' wx:if="{{dataList.length ==0}}">无搜索结果，请还一个关键词试一试~</view>
+</view>
