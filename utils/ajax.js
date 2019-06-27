@@ -1,5 +1,6 @@
 
-var serverPath = "http://192.168.1.200:1113/api/"
+// var serverPath = "http://192.168.1.200:1113/api/"
+var serverPath = "https://demo.letuad.cn/api/"
 
 /**
 * 封装wx.request请求

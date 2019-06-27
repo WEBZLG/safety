@@ -32,7 +32,6 @@ Page({
         }
         ajax.wxRequest('POST', 'app/init', item,
             (res) => {
-                console.log(res)
                 that.setData({
                     logo: res.data.xcx_logo
                 })
@@ -71,7 +70,6 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    console.log(res)
                     app.globalData.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
@@ -86,7 +84,6 @@ Page({
     },
     getUserInfo: function (e) {
         var that = this;
-        console.log(e)
         if (e.detail.errMsg == "getUserInfo:fail auth deny") {
             wx.showToast({
                 title: '拒绝授权',
@@ -102,7 +99,6 @@ Page({
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
                     ajax.wxRequest('POST', 'login/wx_xcx', item,
                         (res) => {
-                            console.log(res)
                             app.globalData.userId = res.data.id;
                             app.globalData.openId = res.data.openid;
                             app.globalData.userInfo = e.detail.userInfo
@@ -117,13 +113,11 @@ Page({
                             }
                             ajax.wxRequest('POST', 'user/updateInfo', item,
                                 (res) => {
-                                    console.log(res)
                                     wx.reLaunch({
                                         url: '../home/home?logo=' + that.data.logo,
                                     })
                                 },
                                 (err) => {
-                                    console.log(err)
                                 })
                         },
                         (err) => {

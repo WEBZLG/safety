@@ -1,0 +1,5 @@
+<!--pages/searchlist/details/details.wxml-->
+<view class='container'>
+    <view class='content'>{{content}}</view>
+    <view class='title' catchtap='viewFile'>{{title}}</view>
+</view>

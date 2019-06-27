@@ -31,7 +31,6 @@ Page({
             }
             ajax.wxRequest('POST', 'article/lists', item,
                 (res) => {
-                    console.log(res)
                     that.setData({
                         dataList: res.data.list
                     })
@@ -46,10 +45,10 @@ Page({
                         arr[index][0].title = res.data.list[index].title;           //对应的时使用WxParse后的结构
                         arr[index][0].word_url = res.data.list[index].word_url;
                     });
-                    console.log(dataList)
                     that.setData({
                         dataList: dataList
                     })
+
                     wx.hideLoading();
                 },
                 (err) => {
@@ -67,11 +66,9 @@ Page({
             url: e.currentTarget.dataset.url,
             success(res) {
                 const filePath = res.tempFilePath;
-                console.log(filePath)
                 wx.openDocument({
                     filePath: filePath,
                     success(res) {
-                        console.log('打开文档成功')
                     }
                 })
                 //保存
@@ -79,10 +76,17 @@ Page({
                 //     tempFilePath: filePath,
                 //     success(res) {
                 //         const savedFilePath = res.savedFilePath;
-                //         console.log(res)
                 //     }
                 // })
             }
+        })
+    },
+    viewText:function(e){
+        var text = e.currentTarget.dataset.text;
+        var title = e.currentTarget.dataset.title;
+        var url = e.currentTarget.dataset.url;
+        wx.navigateTo({
+            url: './details/details?text='+text+'&title='+title+'&url='+url,
         })
     },
     /**
@@ -97,7 +101,6 @@ Page({
         }
         ajax.wxRequest('POST', 'article/lists', item,
             (res) => {
-                console.log(res)
                 that.setData({
                     dataList:res.data.list
                 })

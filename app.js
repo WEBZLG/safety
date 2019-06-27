@@ -6,18 +6,15 @@ App({
         // 获取用户信息
         wx.getSetting({
             success: res => {
-                console.log(res)
                 if (res.authSetting['scope.userInfo']) {
                     wx.getStorage({
                         key: 'userId',
                         success(res) {
-                            console.log(res)
                             that.globalData.userId = res.data
                         }
                     })
                     try {
                         const value = wx.getStorageSync('userId')
-                        console.log(value)
                         if (value) {
                             that.globalData.userId = value
                         }
@@ -29,7 +26,6 @@ App({
                                 }
                                 ajax.wxRequest('POST', 'login/wx_xcx', item,
                                     (res) => {
-                                        console.log(res)
                                         this.globalData.userId = res.data.id;
                                     })
                             }

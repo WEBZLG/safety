@@ -1,0 +1,10 @@
+/* pages/searchlist/details/details.wxss */
+.content{
+    color:#666666;
+    font-size:14px;
+    line-height:44rpx;
+    margin-top:30rpx;
+}
+.title{
+    margin-top:30rpx;
+}

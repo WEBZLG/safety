@@ -1,39 +1,44 @@
-// pages/home/home.js
-const app = getApp()
-var ajax = require("../../utils/ajax.js")
+// pages/searchlist/details/details.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        logo: "../../images/logo.png",
-        iptVal:""
+        content:"",
+        title:"",
+        url:""
     },
-    iptVal:function(e){
-        this.setData({
-            iptVal:e.detail.value
+    viewFile: function (e) {
+        var filePath = this.data.url;
+        wx.downloadFile({
+            url: filePath,
+            success(res) {
+                const filePath = res.tempFilePath;
+                wx.openDocument({
+                    filePath: filePath,
+                    success(res) {
+                    }
+                })
+                //保存
+                // wx.saveFile({
+                //     tempFilePath: filePath,
+                //     success(res) {
+                //         const savedFilePath = res.savedFilePath;
+                //     }
+                // })
+            }
         })
-    },
-    search:function(){
-        var that = this;
-        if(that.data.iptVal==""){
-            wx.showToast({
-                title: '请输入关键字',
-                icon:"none"
-            })
-        }else{
-            wx.navigateTo({
-                url: '../searchlist/searchlist?keyword=' + that.data.iptVal,
-            })
-        }
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
         this.setData({
-            logo: options.logo
+            content:options.text,
+            url:options.url,
+            title:options.title
         })
     },
 

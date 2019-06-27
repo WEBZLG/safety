@@ -3,12 +3,13 @@
         "pages/index/index",
         "pages/logs/logs",
         "pages/home/home",
-        "pages/searchlist/searchlist"
+        "pages/searchlist/searchlist",
+        "pages/searchlist/details/details"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
+        "navigationBarTitleText": "石化青年安规神器",
         "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"
