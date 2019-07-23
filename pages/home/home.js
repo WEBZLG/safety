@@ -8,7 +8,8 @@ Page({
      */
     data: {
         logo: "../../images/logo.png",
-        iptVal:""
+        iptVal:"",
+        visitNum:""
     },
     iptVal:function(e){
         this.setData({
@@ -32,9 +33,30 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            logo: options.logo
-        })
+        var that = this;
+        var item = {
+            'user_id': app.globalData.userId
+        }
+        ajax.wxRequest('POST', 'app/init', item,
+            (res) => {
+                console.log(res)
+                that.setData({
+                    logo: res.data.xcx_logo,
+                    visitNum: res.data.login_total
+                })
+
+            },
+            (err) => {
+                wx.showToast({
+                    title: '数据加载失败' + err,
+                    icon: "none"
+                })
+            })
+        // console.log(options)
+        // this.setData({
+        //     logo: options.logo,
+        //     visitNum: options.visitNum
+        // })
     },
 
     /**

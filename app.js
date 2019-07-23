@@ -43,6 +43,7 @@ App({
                             }
                         }
                     })
+                    console.log(that.globalData.userId)
                 }
             }
         })

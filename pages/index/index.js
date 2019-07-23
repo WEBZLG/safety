@@ -8,7 +8,8 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        logo:"../../images/logo.png"
+        logo:"../../images/logo.png",
+        visitNum:""
     },
     //   缓存userid
     setStorage(key, value) {
@@ -26,14 +27,17 @@ Page({
         }
     },
     onLoad: function () {
+        console.log(app.globalData.userId)
         var that = this;
         var item = {
             'user_id': app.globalData.userId
         }
         ajax.wxRequest('POST', 'app/init', item,
             (res) => {
+                console.log(res)
                 that.setData({
-                    logo: res.data.xcx_logo
+                    logo: res.data.xcx_logo,
+                    visitNum: res.data.login_total
                 })
 
             },
@@ -52,7 +56,7 @@ Page({
                 hasUserInfo: true
             })
             wx.reLaunch({
-                url: '../home/home?logo=' + that.data.logo,
+                url: '../home/home',
             })
         } else if (this.data.canIUse) {
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -63,7 +67,7 @@ Page({
                     hasUserInfo: true
                 })
                 wx.reLaunch({
-                    url: '../home/home?logo=' + that.data.logo,
+                    url: '../home/home',
                 })
             }
         } else {
@@ -76,7 +80,7 @@ Page({
                         hasUserInfo: true
                     })
                     wx.reLaunch({
-                        url: '../home/home?logo='+that.data.logo,
+                        url: '../home/home',
                     })
                 }
             })
@@ -99,6 +103,7 @@ Page({
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
                     ajax.wxRequest('POST', 'login/wx_xcx', item,
                         (res) => {
+                            console.log(res)
                             app.globalData.userId = res.data.id;
                             app.globalData.openId = res.data.openid;
                             app.globalData.userInfo = e.detail.userInfo
@@ -114,7 +119,7 @@ Page({
                             ajax.wxRequest('POST', 'user/updateInfo', item,
                                 (res) => {
                                     wx.reLaunch({
-                                        url: '../home/home?logo=' + that.data.logo,
+                                        url: '../home/home',
                                     })
                                 },
                                 (err) => {
