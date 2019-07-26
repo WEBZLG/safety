@@ -15,7 +15,6 @@
         </view>
         <view class='visit-num'>您是第<text>{{visitNum}}</text>位访问者</view>
         <view class='text'>
-            <view>测试版</view>
             <view>大庆石化公司团委制作</view>
             <view>如有建议，请拨打0459-6761426</view>
         </view>
