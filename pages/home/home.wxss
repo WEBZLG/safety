@@ -27,13 +27,13 @@
     padding:6rpx 0;
 }
 .text{
-    color:#DC4F51;
-    font-size:14px;
-    text-align:center;
-    position:absolute;
-    bottom:100rpx;
-    width:100%;
-    left:0;
+  color: #DC4F51;
+  font-size: 14px;
+  text-align: left;
+  position: absolute;
+  bottom: 100rpx;
+  width: 60%;
+  left: 22%;
 }
 .visit-num{
     text-align:right;
@@ -43,4 +43,18 @@
 }
 .visit-num text{
 font-weight:bold;
+}
+.part{
+  display: inline-block;
+  vertical-align: middle;
+}
+.part-one{
+  text-align: justify;
+  text-align-last: justify;
+}
+.make{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  padding: 0 20rpx;
 }
